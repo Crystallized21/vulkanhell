@@ -5,11 +5,13 @@
 //  Created by Michael Bui on 4/24/25.
 //
 
-#include <vulkan/vulkan.h>
+#define GLFW_INCLUDE_VULKAN
+#include <GLFW/glfw3.h>
+
+#include <iostream>
 #include <stdexcept>
 #include <cstdlib>
-#include <iostream>
-#include <ostream>
+
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
 
@@ -39,11 +41,15 @@ private:
     }
 
     void mainLoop() {
-
+        while (!glfwWindowShouldClose(window)) {
+            glfwPollEvents();
+        }
     }
 
     void cleanup() {
+        glfwDestroyWindow(window);
 
+        glfwTerminate();
     }
 };
 
