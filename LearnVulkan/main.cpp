@@ -11,6 +11,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
+#include <vector>
 
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
@@ -77,6 +78,7 @@ private:
 
         VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
 
+        // macOS bug for an incompatible driver error.
         std::vector<const char*> requiredExtensions;
 
         for (uint32_t i = 0; i < glfwExtensionCount; i++) {
@@ -93,6 +95,21 @@ private:
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
             throw std::runtime_error("failed to create instance");
         }
+
+        // check for extension support
+        uint32_t extensionCount = 0;
+        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+
+        std::vector<VkExtensionProperties> extensions(extensionCount);
+
+        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
+
+        // list the available extensions
+        std::cout << "avaliable extensions:\n";
+
+        for (const auto& extension : extensions)
+            std::cout << '\t' << extension.extensionName << '\n';
+
     }
 };
 
