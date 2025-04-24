@@ -10,6 +10,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <ostream>
+const uint32_t WIDTH = 800;
+const uint32_t HEIGHT = 600;
 
 class HelloTriangleApplication {
 public:
