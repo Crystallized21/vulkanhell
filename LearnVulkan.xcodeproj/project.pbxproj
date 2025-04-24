@@ -6,20 +6,35 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5817BC982DB9F64E0033296A /* libglfw.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5817BC972DB9F64E0033296A /* libglfw.3.dylib */; };
+		5817BC9A2DB9F6820033296A /* libvulkan.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5817BC992DB9F6820033296A /* libvulkan.1.dylib */; };
+		5817BC9C2DB9F6950033296A /* libvulkan.1.4.309.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5817BC9B2DB9F6950033296A /* libvulkan.1.4.309.dylib */; };
+		5817BC9D2DB9F6AE0033296A /* libvulkan.1.4.309.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5817BC9B2DB9F6950033296A /* libvulkan.1.4.309.dylib */; };
+		5817BC9E2DB9F6AE0033296A /* libvulkan.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5817BC992DB9F6820033296A /* libvulkan.1.dylib */; };
+		5817BC9F2DB9F6B00033296A /* libglfw.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5817BC972DB9F64E0033296A /* libglfw.3.dylib */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		580704552DB9E957004A19EE /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 10;
 			files = (
+				5817BC982DB9F64E0033296A /* libglfw.3.dylib in CopyFiles */,
+				5817BC9A2DB9F6820033296A /* libvulkan.1.dylib in CopyFiles */,
+				5817BC9C2DB9F6950033296A /* libvulkan.1.4.309.dylib in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		580704572DB9E957004A19EE /* LearnVulkan */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnVulkan; sourceTree = BUILT_PRODUCTS_DIR; };
+		5817BC972DB9F64E0033296A /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.dylib; path = ../../../../../usr/local/lib/libglfw.3.dylib; sourceTree = "<group>"; };
+		5817BC992DB9F6820033296A /* libvulkan.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.dylib; path = ../../../../../usr/local/lib/libvulkan.1.dylib; sourceTree = "<group>"; };
+		5817BC9B2DB9F6950033296A /* libvulkan.1.4.309.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libvulkan.1.4.309.dylib; path = ../../../../../usr/local/lib/libvulkan.1.4.309.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -35,6 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5817BC9D2DB9F6AE0033296A /* libvulkan.1.4.309.dylib in Frameworks */,
+				5817BC9E2DB9F6AE0033296A /* libvulkan.1.dylib in Frameworks */,
+				5817BC9F2DB9F6B00033296A /* libglfw.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				580704592DB9E957004A19EE /* LearnVulkan */,
+				5817BC962DB9F64E0033296A /* Frameworks */,
 				580704582DB9E957004A19EE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +74,16 @@
 				580704572DB9E957004A19EE /* LearnVulkan */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5817BC962DB9F64E0033296A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5817BC9B2DB9F6950033296A /* libvulkan.1.4.309.dylib */,
+				5817BC992DB9F6820033296A /* libvulkan.1.dylib */,
+				5817BC972DB9F64E0033296A /* libglfw.3.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +274,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"/usr/local/include/**",
+					"/opt/homebrew/opt/glfw/include/**",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = (
+					"/usr/local/lib/**",
+					"/opt/homebrew/opt/glfw/lib/**",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
