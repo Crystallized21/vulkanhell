@@ -9,9 +9,10 @@
 #include <GLFW/glfw3.h>
 
 #define VK_USE_PLATFORM_WIN32_KHR
+#define VK_USE_PLATFORM_MACOS_MVK
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
-#define GLFW_EXPOSE_NATIVE_WIN32
+#define GLFW_EXPOSE_NATIVE_COCOA
 #include <GLFW/glfw3native.h>
 
 #include <iostream>
@@ -340,16 +341,32 @@ private:
 
         VkPhysicalDeviceFeatures deviceFeatures{};
 
+        // required device extension for macOS
+        std::vector<const char *> deviceExtensions = {
+            VK_KHR_SWAPCHAIN_EXTENSION_NAME,
+        };
+
+        // conditional for macOS extension
+#ifdef __APPLE__
+        deviceExtensions.push_back("VK_KHR_portability_subset");
+#endif
+
+
         VkDeviceCreateInfo createInfo{};
         createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 
         createInfo.pQueueCreateInfos = &queueCreateInfo;
         createInfo.queueCreateInfoCount = 1;
+        createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
+        createInfo.pQueueCreateInfos = queueCreateInfos.data();
 
         createInfo.pEnabledFeatures = &deviceFeatures;
 
         createInfo.enabledExtensionCount = 0;
 
+        // set the device extensions (macOS portability layers)
+        createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
+        createInfo.ppEnabledExtensionNames = deviceExtensions.data();
         if (enableValidationLayers) {
             createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
             createInfo.ppEnabledLayerNames = validationLayers.data();
