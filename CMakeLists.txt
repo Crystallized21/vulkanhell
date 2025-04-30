@@ -60,3 +60,6 @@ add_custom_target(shaders
 
 # Make the main target depend on the shaders
 add_dependencies(LearnVulkan shaders)
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+        CMAKE_BINARY_DIR="${CMAKE_BINARY_DIR}")
