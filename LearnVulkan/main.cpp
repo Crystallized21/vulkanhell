@@ -559,6 +559,15 @@ private:
         rasterizer.frontFace = VK_FRONT_FACE_CLOCKWISE;
         rasterizer.depthBiasEnable = VK_FALSE;
 
+        VkPipelineMultisampleStateCreateInfo multisampling{};
+        multisampling.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
+        multisampling.sampleShadingEnable = VK_FALSE;
+        multisampling.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
+        multisampling.minSampleShading = 1.0f;
+        multisampling.pSampleMask = nullptr;
+        multisampling.alphaToCoverageEnable = VK_FALSE;
+        multisampling.alphaToOneEnable = VK_FALSE;
+
         std::vector<VkDynamicState> dynamicStates = {
             VK_DYNAMIC_STATE_VIEWPORT,
             VK_DYNAMIC_STATE_SCISSOR
